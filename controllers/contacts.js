@@ -30,7 +30,7 @@ module.exports.list = async function (req, res, next) {
 
 module.exports.contactGet = async function (req, res, next) {
     try {
-        let cID = req.params.contactID;
+        let cID = req.params.id;
 
         req.contact = await contacts.findOne({ _id: cID }, '-password');
         next();
@@ -48,7 +48,7 @@ module.exports.contactsByID = async function (req, res, next) {
 
 module.exports.update = async function (req, res, next) {
     try {
-        let cID = req.params.contactID;
+        let cID = req.params.id;
 
         let updateContact = new contacts(req.body);
         updateContact._id = cID;
@@ -75,7 +75,7 @@ module.exports.update = async function (req, res, next) {
 
 module.exports.remove = async function (req, res, next) {
     try {
-        let cID = req.params.contactID;
+        let cID = req.params.id;
 
         let result = await contacts.deleteOne({ _id: cID });
         console.log(result);

@@ -30,7 +30,7 @@ module.exports.list = async function (req, res, next) {
 
 module.exports.userGet = async function (req, res, next) {
     try {
-        let uID = req.params.userID;
+        let uID = req.params.id;
 
         req.user = await UserModel.findOne({ _id: uID }, '-password');
         next();
@@ -48,7 +48,7 @@ module.exports.userByID = async function (req, res, next) {
 
 module.exports.update = async function (req, res, next) {
     try {
-        let uID = req.params.userID;
+        let uID = req.params.id;
 
         let updateUser = new UserModel(req.body);
         updateUser._id = uID;
@@ -75,7 +75,7 @@ module.exports.update = async function (req, res, next) {
 
 module.exports.remove = async function (req, res, next) {
     try {
-        let uID = req.params.userID;
+        let uID = req.params.id;
 
         let result = await UserModel.deleteOne({ _id: uID });
         console.log(result);

@@ -4,10 +4,12 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var db = require('./config/mongoose');
+var app = require('./config/express');
 var debug = require('debug')('backend2:server');
 var http = require('http');
-
+app.set('view engine', 'ejs');
+app.set('views', './views'); // Specify the directory where your view files are located
 /**
  * Get port from environment and store in Express.
  */
@@ -18,7 +20,7 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
-
+db();
 var server = http.createServer(app);
 
 /**
@@ -87,4 +89,5 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+  console.log('Welcome to Portfolio Backend API' );
 }
